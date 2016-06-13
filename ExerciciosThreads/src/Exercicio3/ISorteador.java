@@ -10,6 +10,6 @@ package Exercicio3;
  * @author Joseane Wichrowski
  */
 public interface ISorteador {
-    int[] sortear();
+    public int[] sortear();
     int[][] getUltimosSorteios();
 }

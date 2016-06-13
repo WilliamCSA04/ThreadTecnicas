@@ -13,28 +13,34 @@ import java.util.Random;
  */
 public class Sorteador implements ISorteador {
 
-    private int[][] sorteios;
-
-    public Sorteador() {
-        this.sorteios = new int[10][10];
-    }
+    private static int[][] sorteios = new int[10][6];
+    private static int count = 0;
+  
     
     
     
     @Override
-    public int[] sortear() {
+    public synchronized int[] sortear() {
         int[] numeros = new int[6];
         Random r = new Random();
         for(int i=0; i<numeros.length; i++){
            numeros[i]=r.nextInt(60);
+           if(count<sorteios.length){
+               sorteios[count][i]=numeros[i];
+           }else{
+               //Fazer replace dos ultimos jogos
+           }
+           
         }
+        count++;
         return numeros;
     }
 
     @Override
-    public int[][] getUltimosSorteios() {
-        return null;
+    public synchronized int[][] getUltimosSorteios() {
+        return sorteios;
     }
+
     
     
     
